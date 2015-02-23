@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     
     <parent>
-        <groupId>com.grego</groupId>
-        <artifactId>view-manager</artifactId>
+        <groupId>com.gregoavg.view-manager</groupId>
+        <artifactId>view-manager-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     
-    <groupId>com.grego</groupId>
+    <groupId>com.gregoavg.view-manager</groupId>
     <artifactId>view-manager-prototype</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -20,7 +20,7 @@
     
     <dependencies>
         <dependency>
-            <groupId>com.grego</groupId>
+            <groupId>com.gregoavg.view-manager</groupId>
             <artifactId>view-manager-test-prototype</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
@@ -44,4 +44,5 @@
             </plugin>
         </plugins>
     </build>
+    
 </project>
