@@ -16,8 +16,9 @@
 package com.gregoavg.viewmanager.application;
 
 import com.gregoavg.viewmanager.event.ICallback;
-import com.gregoavg.viewmanager.window.IWindowManager;
-import com.gregoavg.viewmanager.window.JFxWindowManager;
+import com.gregoavg.viewmanager.window.JFxWindowAdapter;
+import com.gregoavg.viewmanager.window.manager.IWindowManager;
+import com.gregoavg.viewmanager.window.manager.SingleWindowManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -43,9 +44,7 @@ public final class JFxApplication extends Application implements IApplication {
     public void start(Stage stage) throws Exception {
         LOGGER.info("Application started");
         stage.close();
-        
-        final IWindowManager windowManager = JFxWindowManager.INSTANCE;
-        callback.onCall(windowManager);
+        callback.onCall(new SingleWindowManager(JFxWindowAdapter.INSTANCE));
     }
 
     @Override
@@ -56,6 +55,7 @@ public final class JFxApplication extends Application implements IApplication {
 
     @Override
     public void onStart(ICallback<IWindowManager> callback) {
+        Objects.requireNonNull(callback, "On start callback can not be null!");
         JFxApplication.callback = callback;
     }
     

@@ -9,7 +9,7 @@
     </parent>
     
     <groupId>com.gregoavg.view-manager</groupId>
-    <artifactId>view-manager-test-prototype</artifactId>
+    <artifactId>view-manager-fxtest-prototype</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     
@@ -19,12 +19,6 @@
     </properties>
     
     <dependencies>
-        <dependency>
-            <groupId>com.grego.view-manager</groupId>
-            <artifactId>view-manager-prototype</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

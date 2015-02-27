@@ -5,9 +5,6 @@
  */
 package com.gregoavg.view.manager.test;
 
-import com.gregoavg.viewmanager.application.IApplication;
-import com.gregoavg.viewmanager.event.ICallback;
-import com.gregoavg.viewmanager.window.IWindowManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.slf4j.LoggerFactory;
@@ -20,7 +17,7 @@ import java.util.concurrent.Executors;
  *
  * @author Grigorios
  */
-public class JavaFxTestApplication extends Application implements IApplication {
+public class JavaFxTestApplication extends Application {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(JavaFxTestApplication.class);
     
     private static final CountDownLatch latch = new CountDownLatch(1);
@@ -31,13 +28,11 @@ public class JavaFxTestApplication extends Application implements IApplication {
         latch.countDown();
     }
 
-    @Override
-    public void invokeLauncher(String[] args) {
+    public void initThread(String[] args) {
         // start the JavaFX application thread
         final ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(() -> {
-            Application.launch(args);
-        });
+        executor.execute(() -> Application.launch(args));
+
         // wait until JavaFX thread initialization completions
         try {
             latch.await();
@@ -45,10 +40,4 @@ public class JavaFxTestApplication extends Application implements IApplication {
             LOGGER.error(ex.getLocalizedMessage());
         }
     }
-
-    @Override
-    public void onStart(ICallback<IWindowManager> callback) {
-        //do nothing
-    }
-
 }

@@ -20,15 +20,14 @@ import com.gregoavg.viewmanager.mvc.IView;
 import javax.validation.constraints.NotNull;
 
 /**
- * Represents a supervisor for a managed window that
- * serves as parent placeholder for views.
+ * Represents a window that serves as parent placeholder for views
  * 
  * @author Grigorios
  */
-public interface IWindowManager {
+public interface IWindow {
     
     /**
-     * Sets a view as main display in the managed window
+     * Sets a view as main display in the window
      * 
      * @param view - view that needs to be displayed
      * @see   IView
@@ -37,12 +36,21 @@ public interface IWindowManager {
     void setDisplay(IView view);
     
     /**
-     * Changes managed window visibility
+     * Changes window visibility
      * 
      * @param visible preference state 
      * 
      */
     void setVisibility(boolean visible);
+
+    /**
+     * Returns  window's the visibility status
+     *
+     * @return  true if visible,
+     *          false instead
+     *
+     */
+    boolean isVisible();
     
     /**
      * Changes default window size
@@ -51,15 +59,7 @@ public interface IWindowManager {
      * @param height desired window height
      * 
      */
-    void setWindowSize(int width, int height);
-    
-    /**
-     * Returns the managed window
-     * 
-     * @return window object
-     * 
-     */
-    Object getWindow();
+    void setSize(int width, int height);
 
     /**
      * Sets display title for the window
@@ -70,10 +70,26 @@ public interface IWindowManager {
     void setTitle(String title);
 
     /**
-     * Loads a custom image, addressed by the given path,
-     * as main icon of the application window.
+     * Returns the displayed title of this window
      *
-     * @param path the url path to image icon
+     * @return title of window
+     *
+     */
+    String getTitle();
+
+    /**
+     * Loads a custom image, from the given path,
+     * as the main icon of this window.
+     *
+     * @param path the string representation of the image icon path
+     *
      */
     void setIcon(@NotNull String path);
+
+    /**
+     * Disposes window and all it's contents
+     *
+     */
+    void dispose();
+
 }

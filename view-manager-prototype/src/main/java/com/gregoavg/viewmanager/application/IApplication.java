@@ -7,7 +7,7 @@ package com.gregoavg.viewmanager.application;
 
 import com.gregoavg.viewmanager.ILaunchable;
 import com.gregoavg.viewmanager.event.ICallback;
-import com.gregoavg.viewmanager.window.IWindowManager;
+import com.gregoavg.viewmanager.window.manager.IWindowManager;
 
 /**
  *

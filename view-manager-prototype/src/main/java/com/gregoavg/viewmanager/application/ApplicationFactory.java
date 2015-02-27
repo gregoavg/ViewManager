@@ -39,7 +39,8 @@ public final class ApplicationFactory {
                 return new JFxApplication();
         }
     }
-    
+
+
     /**
      * Enumeration of application types that <code>ApplicationFactory</code>
      * is capable to support.
