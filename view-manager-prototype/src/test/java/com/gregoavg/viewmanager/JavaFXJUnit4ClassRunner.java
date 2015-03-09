@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gregoavg.view.manager.test;
+package com.gregoavg.viewmanager;
 
+import com.gregoavg.viewmanager.application.IApplication;
 import com.gregoavg.viewmanager.application.IApplication;
 import javafx.application.Platform;
 
@@ -47,5 +48,9 @@ public class JavaFXJUnit4ClassRunner extends BlockJUnit4ClassRunner {
             LOGGER.warn(ex.getMessage());
         }
     }
+    
+    
+    
+    
 
 }

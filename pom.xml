@@ -9,7 +9,6 @@
     
     <modules>
         <module>view-manager-prototype</module>
-        <module>view-manager-test-prototype</module>
     </modules>
     
     <properties>
