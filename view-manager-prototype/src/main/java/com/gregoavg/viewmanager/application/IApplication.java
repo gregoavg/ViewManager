@@ -15,6 +15,6 @@ import com.gregoavg.viewmanager.window.manager.IWindowManager;
  */
 public interface IApplication extends ILaunchable {
     
-    void onStart(ICallback<IWindowManager> callback);
+    void onStart(final ICallback<IWindowManager> action);
     
 }

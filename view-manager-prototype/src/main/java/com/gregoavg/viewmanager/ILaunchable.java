@@ -21,6 +21,6 @@ public interface ILaunchable {
      * @param args the command arguments
      * 
      */
-    void invokeLauncher(@NotNull String[] args);
+    void invokeLauncher(@NotNull final String[] args);
     
 }

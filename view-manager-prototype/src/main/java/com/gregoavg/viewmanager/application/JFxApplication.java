@@ -48,15 +48,14 @@ public final class JFxApplication extends Application implements IApplication {
     }
 
     @Override
-    public synchronized void invokeLauncher(@NotNull String[] args) {
+    public synchronized void invokeLauncher(@NotNull final String[] args) {
         String[] arguments = Objects.requireNonNull(args, "Launch arguments can't be null!");
         Application.launch(arguments);
     }
 
     @Override
-    public void onStart(ICallback<IWindowManager> callback) {
-        Objects.requireNonNull(callback, "On start callback can not be null!");
-        JFxApplication.callback = callback;
+    public void onStart(final ICallback<IWindowManager> action) {
+        callback = Objects.requireNonNull(action, "On start callback can not be null!");
     }
     
     
