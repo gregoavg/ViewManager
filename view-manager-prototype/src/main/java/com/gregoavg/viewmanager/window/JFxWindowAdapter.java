@@ -20,7 +20,6 @@ import com.gregoavg.viewmanager.mvc.JFxView;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,26 +27,26 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * Singleton instance implementation of <code>IWindowManager</code> 
- * implementation for the JavaFX framework. It encapsulates a JavaFX stage instance
- * as a root window, that serves as parent for JavaFX view instances.
+ * Singleton instance implementation of <code>IWindow</code>
+ * for the JavaFX framework. It works as window adapter by encapsulating
+ * a JavaFX stage instance, that serves as parent for JavaFX view instances.
  *
  * @author Grigorios
  */
-public enum JFxWindowManager implements IWindowManager {
+public enum JFxWindowAdapter implements IWindow {
     INSTANCE;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(JFxWindowManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JFxWindowAdapter.class);
 
     // serves as root window for this Manager
     private final Stage stage = new Stage();
     
-    private JFxView currentDisplay = null;
+    private JFxView display = null;
 
     // default stage size
     private Point2D stageSize = new Point2D(800, 600);
 
-    private JFxWindowManager() {
+    private JFxWindowAdapter() {
         stage.setWidth(stageSize.getX());
         stage.setHeight(stageSize.getY());
     }
@@ -55,42 +54,42 @@ public enum JFxWindowManager implements IWindowManager {
     @Override
     public void setDisplay(IView view) {
         if (view instanceof JFxView) {
-            currentDisplay = (JFxView) view;
-            stage.setScene(currentDisplay.getScene());
+            display = (JFxView) view;
+            stage.setScene(display.getScene());
 
             LOGGER.info("Display: " + view.toString() + " added to Window Manager");
         }
     }
 
-    public IView getCurrentDisplay() {
-        return currentDisplay;
+    public IView getDisplay() {
+        return display;
     }
 
     @Override
     public void setVisibility(boolean visible) {
         if (visible) {
             stage.show();
-            LOGGER.info("Window Manager is visible");
+            LOGGER.info("Window is visible");
         } else {
             stage.hide();
-            LOGGER.info("Window Manager is invisible by user request");
+            LOGGER.info("Window is invisible by user request");
         }
     }
 
     @Override
-    public void setWindowSize(int width, int height) {
+    public void setSize(int width, int height) {
         stageSize = new Point2D(width, height);
         stageSizeChanged();
     }
 
     @Override
-    public Window getWindow() {
-        return stage;
+    public void setTitle(String title) {
+        stage.setTitle(title);
     }
 
     @Override
-    public void setTitle(String title) {
-        stage.setTitle(title);
+    public String getTitle() {
+        return stage.getTitle();
     }
 
     @Override
@@ -100,7 +99,7 @@ public enum JFxWindowManager implements IWindowManager {
     }
     
     /**
-     * Updates stage size after the <code>setWindowSize</code> method call.
+     * Updates stage size after the <code>setSize</code> method call.
      */
     private void stageSizeChanged() {
         LOGGER.info("Window Manager's root window size, changed by user request");
@@ -111,4 +110,14 @@ public enum JFxWindowManager implements IWindowManager {
         stage.setHeight(stageSize.getY());
     }
 
+    @Override
+    public void dispose() {
+        this.display.dispose();
+        this.stage.close();
+    }
+
+    @Override
+    public boolean isVisible() {
+        return stage.isShowing();
+    }
 }

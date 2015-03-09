@@ -5,8 +5,6 @@
  */
 package com.gregoavg.viewmanager;
 
-import com.gregoavg.viewmanager.application.IApplication;
-import com.gregoavg.viewmanager.application.IApplication;
 import javafx.application.Platform;
 
 import org.slf4j.LoggerFactory;
@@ -27,11 +25,10 @@ public class JavaFXJUnit4ClassRunner extends BlockJUnit4ClassRunner {
     public JavaFXJUnit4ClassRunner(Class<?> klass) throws InitializationError {
         super(klass);
         
-        final IApplication testApp = new JavaFxTestApplication();
-        testApp.invokeLauncher(new String[0]);
+        final JavaFxTestApplication testApp = new JavaFxTestApplication();
+        testApp.initThread(new String[0]);
     }
 
-    //Code from: http://awhite.blogspot.gr/2013/04/javafx-junit-testing.html
     @Override
     protected void runChild(final FrameworkMethod method, final RunNotifier notifier) {
         // Create a latch which is removed after the super runChild() method completion
@@ -48,9 +45,5 @@ public class JavaFXJUnit4ClassRunner extends BlockJUnit4ClassRunner {
             LOGGER.warn(ex.getMessage());
         }
     }
-    
-    
-    
-    
 
 }
