@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gregoavg.viewmanager;
+package com.gregoavg.viewmanager.view.manager;
 
-import com.gregoavg.view.manager.test.JavaFXJUnit4ClassRunner;
+import com.gregoavg.viewmanager.JavaFXJUnit4ClassRunner;
 import com.gregoavg.viewmanager.mvc.IView;
 import com.gregoavg.viewmanager.view.SimpleFxView;
 import com.gregoavg.viewmanager.window.IWindow;
